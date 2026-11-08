@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ИИ-камера — контроль отгрузки на производстве</title>
+<meta name="description" content="ИИ-камера считает каждый рулон при погрузке: фото каждой единицы и сверка с накладной до выезда машины.">
+<meta property="og:title" content="ИИ-камера считает каждый рулон, который уехал со склада">
+<meta property="og:description" content="Без ручного пересчёта. С фото каждого рулона и сверкой с накладной.">
+<meta property="og:image" content="img/main37.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1F6B45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231F6B45'/%3E%3Cpath d='M5 9a1.5 1.5 0 0 1 1.5-1.5h2l1.5-1.5h4l1.5 1.5h2A1.5 1.5 0 0 1 19 9v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 16.5z' fill='none' stroke='white' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='12.5' r='2.6' fill='none' stroke='white' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Unbounded:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F5F1}
+a{color:#1F6B45}a:hover{color:#14482E}
+</style>
+<style>html{scroll-behavior:smooth}img{max-width:100%}</style>
+</head>
+<body>
+<div style="font-family: Manrope, system-ui, sans-serif; color: #15201A; background: #F6F5F1; min-height: 100vh">
+
+<!-- шапка -->
+<header style="border-bottom: 1px solid #E2E0D8">
+<div style="max-width: 1120px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 40px; height: 40px; border-radius: 10px; background: #1F6B45; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h3l2-2h4l2 2h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+</div>
+<div style="display: flex; flex-direction: column">
+<span style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 16px">ИИ-камера</span>
+<span style="font-size: 13px; color: #5B6560">Контроль отгрузки на производстве</span>
+</div>
+</div>
+<a href="https://wa.me/" data-wa target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 10px; background: #15201A; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none">Оставить заявку</a>
+</div>
+</header>
+
+<!-- первый экран -->
+<section style="max-width: 1120px; margin: 0 auto; padding: 80px 24px 72px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #E3EFE7; color: #14482E; font-size: 14px; font-weight: 700">Для ковровых фабрик и производителей рулонных товаров</span>
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 54px); line-height: 1.1; letter-spacing: -0.02em">ИИ-камера считает каждый рулон, который уехал со склада</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #3A4540; max-width: 520px">Без ручного пересчёта. С фото каждого рулона и сверкой с накладной — ещё до того, как машина выехала за ворота.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://wa.me/" data-wa target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 12px; background: #1F6B45; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Оставить заявку</a>
+<a href="#test" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 12px; border: 1.5px solid #15201A; color: #15201A; font-weight: 700; font-size: 16px; text-decoration: none">Смотреть тест</a>
+</div>
+</div>
+
+<div style="flex: 1 1 400px; min-width: 0">
+<div style="background: #FFFFFF; border-radius: 20px; border: 1px solid #E2E0D8; box-shadow: 0 24px 48px -24px rgba(21,32,26,0.25); overflow: hidden">
+<div style="padding: 16px 20px; border-bottom: 1px solid #EEECE6; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center">
+<span style="font-weight: 700; font-size: 15px">Отгрузка · фура 123 ABC 13</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #1F6B45"><span style="width: 8px; height: 8px; border-radius: 99px; background: #1F6B45"></span>Камера в работе</span>
+</div>
+<div style="padding: 28px 20px 20px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #5B6560; font-weight: 600">Уехало рулонов</span>
+<div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap">
+<span style="font-family: Unbounded, sans-serif; font-weight: 700; font-size: 72px; line-height: 1">47</span>
+<span style="font-size: 16px; color: #5B6560">из 50 по накладной</span>
+</div>
+</div>
+<div style="margin: 0 20px 20px; padding: 12px 14px; border-radius: 12px; background: #FDEDE3; color: #8A2C0A; font-weight: 700; font-size: 15px">Не хватает 3 рулонов</div>
+<div style="border-top: 1px solid #EEECE6; padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; color: #5B6560; font-weight: 600">Последние рулоны</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<img src="img/r1.jpg" alt="Кадр засчитанного рулона" style="width: 100%; height: 96px; object-fit: cover; border-radius: 8px; display: block">
+<img src="img/r2.jpg" alt="Кадр засчитанного рулона" style="width: 100%; height: 96px; object-fit: cover; border-radius: 8px; display: block">
+<img src="img/r3.jpg" alt="Кадр засчитанного рулона" style="width: 100%; height: 96px; object-fit: cover; border-radius: 8px; display: block">
+</div>
+</div>
+</div>
+<p style="margin: 10px 4px 0; font-size: 13px; color: #5B6560">Экран погрузки. Кадры — с тестовой погрузки, цифры условные.</p>
+</div>
+</section>
+
+<!-- проблема -->
+<section style="background: #15201A; color: #F6F5F1">
+<div style="max-width: 1120px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<span style="font-size: 14px; font-weight: 700; color: #F0A27A; letter-spacing: 0.06em; text-transform: uppercase">Проблема</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Производство считает каждый метр, а отгрузку — на глаз</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="background: #1F2C25; border: 1px solid #2E3D35; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Unbounded, sans-serif; font-size: 26px; color: #F0A27A">01</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 700">Счёт вручную</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #C9D2CD">Человек у машины ошибся или отвлёкся — проверить нечем.</p>
+</div>
+<div style="background: #1F2C25; border: 1px solid #2E3D35; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Unbounded, sans-serif; font-size: 26px; color: #F0A27A">02</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 700">Машина не связана с заказом</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #C9D2CD">Не видно, сколько ушло именно в этой машине по этой накладной.</p>
+</div>
+<div style="background: #1F2C25; border: 1px solid #2E3D35; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Unbounded, sans-serif; font-size: 26px; color: #F0A27A">03</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 700">Перегруз на весах</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #C9D2CD">Машину вернули, часть рулонов сняли — в учёте этого нет.</p>
+</div>
+<div style="background: #1F2C25; border: 1px solid #2E3D35; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: Unbounded, sans-serif; font-size: 26px; color: #F0A27A">04</span>
+<h3 style="margin: 0; font-size: 19px; font-weight: 700">Спор с покупателем</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #C9D2CD">Клиент говорит «привезли меньше», а доказательств нет.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- тест -->
+<section id="test" style="max-width: 1120px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<span style="font-size: 14px; font-weight: 700; color: #1F6B45; letter-spacing: 0.06em; text-transform: uppercase">Тест на реальной погрузке</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Так ИИ видит погрузку</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3A4540">Рулон едет по ленте в фуру. ИИ обводит его рамкой и засчитывает, когда он дошёл до кузова.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: stretch">
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<img src="img/main37.jpg" alt="Рулон на ленте в зелёной рамке «засчитан», оранжевая зона — лента" style="width: 100%; height: 440px; object-fit: cover; object-position: center 45%; display: block">
+<figcaption style="padding: 18px 20px; font-size: 15px; line-height: 1.5; color: #3A4540"><strong style="color: #15201A">Рулон засчитан.</strong> Зелёная рамка — рулон, оранжевая зона — лента в фуру.</figcaption>
+</figure>
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<img src="img/main16.jpg" alt="Рулон на ленте в зелёной рамке «засчитан», рядом работник" style="width: 100%; height: 440px; object-fit: cover; object-position: center 45%; display: block">
+<figcaption style="padding: 18px 20px; font-size: 15px; line-height: 1.5; color: #3A4540"><strong style="color: #15201A">Люди рядом не мешают.</strong> Грузчики и руки в кадре не дают ложного счёта.</figcaption>
+</figure>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-size: 14px; font-weight: 700; color: #5B6560">Кадры из отчёта</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px"><img src="img/r1.jpg" alt="Рулон № 1" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; display: block"><span style="font-size: 13px; font-weight: 700">№ 3 · 00:16</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><img src="img/r2.jpg" alt="Рулон № 2" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; display: block"><span style="font-size: 13px; font-weight: 700">№ 5 · 00:25</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><img src="img/r3.jpg" alt="Рулон № 3" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px; display: block"><span style="font-size: 13px; font-weight: 700">№ 7 · 00:37</span></div>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">На каждый засчитанный рулон — своё фото и время. Запись 53 секунды — 9 рулонов, у каждого свой кадр.</p>
+</div>
+</div>
+<p style="margin: 0; font-size: 13px; color: #5B6560">Кадры с тестовой погрузки. Лица работников скрыты.</p>
+</section>
+
+<!-- как работает -->
+<section style="background: #FFFFFF; border-top: 1px solid #E2E0D8; border-bottom: 1px solid #E2E0D8">
+<div style="max-width: 1120px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<span style="font-size: 14px; font-weight: 700; color: #1F6B45; letter-spacing: 0.06em; text-transform: uppercase">Решение</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Как это работает</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="background: #F6F5F1; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center">1</span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">Охрана открывает рейс</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A4540">Вводит номер машины и сколько рулонов по накладной.</p>
+</div>
+<div style="background: #F6F5F1; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center">2</span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">ИИ-камера считает</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A4540">Рулон в машину — плюс один, из машины — минус один.</p>
+</div>
+<div style="background: #F6F5F1; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center">3</span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700">Готов отчёт</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3A4540">Итог по машине, фото каждого рулона и сверка с накладной.</p>
+</div>
+</div>
+<div style="background: #E3EFE7; border-radius: 18px; padding: 22px 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; font-weight: 700">
+<span style="font-size: 15px; color: #14482E">Итог по машине:</span>
+<span style="padding: 8px 14px; border-radius: 10px; background: #FFFFFF; font-size: 16px">загрузили 49</span>
+<span style="font-size: 20px; color: #14482E">−</span>
+<span style="padding: 8px 14px; border-radius: 10px; background: #FFFFFF; font-size: 16px">выгрузили 1</span>
+<span style="font-size: 20px; color: #14482E">−</span>
+<span style="padding: 8px 14px; border-radius: 10px; background: #FFFFFF; font-size: 16px">сняли после весов 1</span>
+<span style="font-size: 20px; color: #14482E">=</span>
+<span style="padding: 8px 14px; border-radius: 10px; background: #1F6B45; color: #FFFFFF; font-size: 16px">уехало 47</span>
+</div>
+</div>
+</section>
+
+<!-- возможности -->
+<section style="max-width: 1120px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 32px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Что умеет система</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 12px; background: #E3EFE7; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M5 12.5a10 10 0 0 1 5-2.8"></path><path d="M12 20h.01"></path></svg></div>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Работает без интернета</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Считает на месте и отправит данные, когда связь вернётся.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 12px; background: #E3EFE7; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3"></path><path d="M17 17H6l3 3"></path></svg></div>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Считает в обе стороны</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Погрузка, выгрузка и снятие после весов — в одном рейсе.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 12px; background: #E3EFE7; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a10 10 0 0 1 0 14"></path></svg></div>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Сигнал на каждый рулон</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Грузчики и охрана слышат и видят: рулон засчитан.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 12px; background: #E3EFE7; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F6B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1"></rect><rect x="14" y="4" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></div>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Все линии в одном окне</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Номер линии в каждом рейсе и общий отчёт по складу.</p>
+</div>
+</div>
+</section>
+
+<!-- 100 % -->
+<section style="background: #1F6B45; color: #FFFFFF">
+<div style="max-width: 1120px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: center">
+<div style="flex: 0 1 auto; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(72px, 10vw, 120px); line-height: 1">100 %</span>
+<span style="font-size: 20px; font-weight: 700">точность учёта отгрузки</span>
+</div>
+<p style="flex: 1 1 360px; min-width: 0; margin: 0; font-size: 18px; line-height: 1.55; color: #E3EFE7">Каждый засчитанный рулон подтверждён фото. Любое расхождение видно сразу и закрывается прямо в отчёте — итог по машине совпадает с фактом.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 17px; font-weight: 700">Фото каждого рулона</span><span style="font-size: 15px; line-height: 1.5; color: #E3EFE7">Спор с покупателем решается одной ссылкой на отчёт.</span></div>
+<div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 17px; font-weight: 700">Сверка с накладной</span><span style="font-size: 15px; line-height: 1.5; color: #E3EFE7">Недостачу видно, пока машина ещё на территории.</span></div>
+<div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 17px; font-weight: 700">Проверка до запуска</span><span style="font-size: 15px; line-height: 1.5; color: #E3EFE7">10–20 контрольных погрузок с ручным пересчётом.</span></div>
+</div>
+</div>
+</section>
+
+<!-- платформа -->
+<section style="max-width: 1120px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<span style="font-size: 14px; font-weight: 700; color: #1F6B45; letter-spacing: 0.06em; text-transform: uppercase">Платформа</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Открывается в браузере на компьютере и телефоне</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: stretch">
+
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 160px; box-sizing: border-box; padding: 20px; background: #EEF3EF; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px">
+<span style="font-family: Unbounded, sans-serif; font-size: 48px; font-weight: 700; line-height: 1">23</span>
+<div style="height: 8px; border-radius: 4px; background: #D6E2DA"><div style="width: 46%; height: 100%; border-radius: 4px; background: #1F6B45"></div></div>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">Погрузка онлайн</h3><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Счёт на экране, пока грузят. Видно темп и когда закончат.</p></div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 160px; box-sizing: border-box; padding: 20px; background: #EEF3EF; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<img src="img/r1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block">
+<img src="img/r2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block">
+<img src="img/r3.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block">
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">Отчёт по машине</h3><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Фото всех рулонов и сверка с накладной. Можно переслать ссылкой.</p></div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 160px; box-sizing: border-box; padding: 20px; background: #EEF3EF; display: flex; align-items: flex-end; gap: 8px">
+<div style="flex: 1; height: 45%; border-radius: 4px; background: #9DB8A6"></div><div style="flex: 1; height: 70%; border-radius: 4px; background: #9DB8A6"></div><div style="flex: 1; height: 55%; border-radius: 4px; background: #9DB8A6"></div><div style="flex: 1; height: 100%; border-radius: 4px; background: #1F6B45"></div><div style="flex: 1; height: 60%; border-radius: 4px; background: #9DB8A6"></div><div style="flex: 1; height: 75%; border-radius: 4px; background: #9DB8A6"></div>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">Отчёты руководству</h3><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Отгрузка по дням и часам, все расхождения с накладными.</p></div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 160px; box-sizing: border-box; padding: 20px; background: #EEF3EF; display: flex; align-items: center; justify-content: center">
+<div style="width: 70px; height: 120px; box-sizing: border-box; border-radius: 14px; border: 3px solid #15201A; background: #FFFFFF; padding: 8px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px"><div style="height: 40px; border-radius: 6px; background: #D6E2DA"></div><div style="height: 14px; border-radius: 4px; background: #1F6B45"></div></div>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">Видео с телефона</h3><p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Сняли погрузку на телефон — система посчитала рулоны.</p></div>
+</div>
+
+</div>
+</section>
+
+<!-- внедрение -->
+<section style="background: #E3EFE7">
+<div style="max-width: 1120px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
+<span style="font-size: 14px; font-weight: 700; color: #14482E; letter-spacing: 0.06em; text-transform: uppercase">Внедрение</span>
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.15">Четыре шага до запуска</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center">1</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Пилот</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Ставим камеру на одну линию и записываем 5–10 погрузок.</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center">2</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Настройка под ваш товар</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">ИИ учится на ваших рулонах и упаковке.</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center">3</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Монтаж</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Ставим камеры на линии и проверяем на фуре и газели.</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 99px; background: #1F6B45; color: #FFFFFF; font-weight: 800; display: flex; align-items: center; justify-content: center">4</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Запуск</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3A4540">Доступы для охраны и руководства, обучение персонала.</p>
+</div>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #14482E; font-weight: 700">Платформу настраиваем под вас за 30 дней после поставки оборудования.</p>
+</div>
+</section>
+
+<!-- для кого -->
+<section style="max-width: 1120px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.2">Подходит не только для ковров</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="padding: 10px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E0D8; font-size: 15px; font-weight: 600">Ковры</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E0D8; font-size: 15px; font-weight: 600">Линолеум</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E0D8; font-size: 15px; font-weight: 600">Ткани</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E0D8; font-size: 15px; font-weight: 600">Плёнка и бумага в рулонах</span>
+<span style="padding: 10px 16px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E0D8; font-size: 15px; font-weight: 600">Мешки, коробки, поддоны</span>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A4540; max-width: 700px">Новый товар подключается по нескольким образцам — без долгого обучения.</p>
+</section>
+
+<!-- контакт -->
+<section id="contact" style="background: #15201A; color: #F6F5F1">
+<div style="max-width: 1120px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(26px, 3vw, 38px); line-height: 1.15">Покажем на вашей погрузке</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9D2CD">Пришлите видео погрузки с телефона — посчитаем и покажем результат.</p>
+</div>
+<div style="flex: 0 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<a href="https://wa.me/" data-wa target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 64px; padding: 0 28px; border-radius: 14px; background: #25D366; color: #0B2E17; font-weight: 800; font-size: 18px; text-decoration: none">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B2E17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+<span>Оставить заявку в WhatsApp</span>
+</a>
+<span style="font-size: 14px; color: #9FAAA4; text-align: center">Ответим в течение рабочего дня</span>
+</div>
+</div>
+<div style="max-width: 1120px; margin: 0 auto; padding: 20px 24px 32px; border-top: 1px solid #2E3D35; font-size: 13px; color: #9FAAA4">Видео и данные принадлежат фабрике.</div>
+</section>
+
+</div>
+<script>
+// Номер WhatsApp для заявок: только цифры, с кодом страны, например 77011234567
+const WHATSAPP = "";
+const TEXT = "Здравствуйте! Хочу демонстрацию ИИ-камеры для учёта отгрузки.";
+const url = "https://wa.me/" + WHATSAPP.replace(/\D/g, "") + "?text=" + encodeURIComponent(TEXT);
+document.querySelectorAll("a[data-wa]").forEach(a => a.href = url);
+</script>
+</body>
+</html>
